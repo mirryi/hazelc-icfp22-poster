@@ -1,0 +1,24 @@
+\input{prelude}
+
+\newcommand{\THole}{\ensuremath{\SyEHole{\cdot}}}
+\newcommand{\TInt}{\ensuremath{\SyTInt}}
+
+\newcommand{\ELet}[2]{\ensuremath{\SyLet #1 = #2}}
+\newcommand{\ELetAnn}[3]{\ensuremath{\SyLet #1 \SyColon #2 = #3}}
+\newcommand{\EInn}{\ensuremath{\SyInn}}
+\newcommand{\EIn}[1]{\ensuremath{\SyIn #1}}
+\newcommand{\EPlus}[2]{\ensuremath{#1 \SyPlus #2}}
+\newcommand{\ETimes}[2]{\ensuremath{#1 \SyTimes #2}}
+\newcommand{\ECast}[2]{\ensuremath{#1 \SyCastL #2 \SyCastR}}
+
+\newcommand{\ETrue}{\ensuremath{\SyTrue}}
+\newcommand{\EEHole}[1]{\ensuremath{\SyEHole{#1}}}
+
+\begin{document}
+  % let x = true<?> in
+  % x<Int> + ((x<Int> * 6) + ?1)
+  \[\begin{array}{l}
+    \ELet{x}{\ECast{\ETrue}{\THole}} \EInn \\
+    \EPlus{\ECast{x}{\TInt}}{(\EPlus{(\ETimes{\ECast{x}{\TInt}}{6})}{\EEHole{1}})}
+  \end{array}\]
+\end{document}

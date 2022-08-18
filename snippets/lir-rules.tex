@@ -1,0 +1,88 @@
+\input{lir-prelude}
+
+\begin{document}
+
+\begin{center}
+  \[\begin{array}{rccl}
+    \SortNComplete & \SortNCompleteVar & \Coloneqq & \CNC \mid \CNI                                                                              \\
+    \SortComplete  & \SortCompleteVar  & \Coloneqq & \SortNCompleteVar \mid \CII                                                                 \\
+    \SortTypCon    & \SortTypConVar    & \Coloneqq & \TCHole \mid \TCInt \mid \TCBool \mid \cdots                                                   \\
+    \SortTyp       & \SortTypVar       & \Coloneqq & \SortTypConVar[\SortCompleteVar]                                                            \\
+    \SortImm       & \SortImmVar       & \Coloneqq & x \mid \EEHole{\SortHoleId}
+                                                   \mid \underline{n} \mid \underline{b} \mid \cdots                                              \\
+    \SortComp      & \SortCompVar      & \Coloneqq & \EPlusPrim{\SortImmVar}{\SortImmVar} 
+                                                   \mid \EPlusIndet{\SortImmVar}{\SortImmVar} \\
+                   &                   & \mid         & \EWrapIndet{\SortImmVar}
+                                                   \mid \EWrapMaybe{\SortImmVar} \\
+                   &                   & \mid         & \EEmbedPrim{\SortImmVar}
+                                                   \mid \EEmbedIndet{\SortImmVar} \\
+                   &                   & \mid         & \EProjPrim{\SortImmVar}{\SortTypConVar}
+                                                   \mid \EProjIndet{\SortImmVar}{\SortTypConVar} \\
+                   &                   & \mid         & \EBranchWith{\SortImmVar}
+                                                     \EBranchBr{x}{\SortBlockVar}
+                                                    ~\EBranchBr{x'}{\SortBlockVar} \\
+                   &                   & \mid         & \cdots \\
+    \SortStmt      & \SortStmtVar      & \Coloneqq & \ELet{x}{\SortCompVar} \EInn \mid \cdots                                                    \\
+    \SortBlock      & \SortBlockVar      & \Coloneqq & \SortStmtVar^{*} \SortCompVar
+  \end{array}\]
+\end{center}
+%
+\begin{mathpar}
+  \judgment{ }{
+    \hasTypeCtx{\Gamma}{\Delta}{\EEHole{\SortHoleId}}{\TMk{\TCHole}{\CNI}}
+  }{TAEHole} \\
+
+  \judgment{ }{
+    \hasTypeCtx{\Gamma}{\Delta}{\underline{n}}{\TMk{\TCInt}{\CNC}}
+  }{TANumLit} \\
+
+  \judgment{
+    \hasTypeCtx{\Gamma}{\Delta}{\SortImmVar}{\TMk{\SortTypConVar}{\CNC}}
+  }{
+    \hasTypeCtx{\Gamma}{\Delta}{\EWrapIndet{\SortImmVar}}{\TMk{\SortTypConVar}{\CNI}}
+  }{TAWrap?} \\
+
+  \judgment{
+    \hasTypeCtx{\Gamma}{\Delta}{\SortImmVar}{\TMk{\SortTypConVar}{\SortNCompleteVar}}
+  }{
+    \hasTypeCtx{\Gamma}{\Delta}{\EWrapMaybe{\SortImmVar}}{\TMk{\SortTypConVar}{\CII}}
+  }{TAWrap??} \\
+
+  \judgment{
+    \hasTypeCtx{\Gamma}{\Delta}{\SortImmVar}{\TMk{\SortTypConVar}{\CNC}}
+  }{
+    \hasTypeCtx{\Gamma}{\Delta}{\EEmbedPrim{\SortImmVar}}{\TMk{\TCHole}{\CII}}
+  }{TAEmbedNC} \\
+
+  \judgment{
+    \hasTypeCtx{\Gamma}{\Delta}{\SortImmVar}{\TMk{\SortTypConVar}{\CNI}}
+  }{
+    \hasTypeCtx{\Gamma}{\Delta}{\EEmbedIndet{\SortImmVar}}{\TMk{\TCHole}{\CII}}
+  }{TAEmbedNI} \\
+
+  \judgment{
+    \hasTypeCtx{\Gamma}{\Delta}{\SortImmVar}{\TMk{\SortTypConVar}{\CNC}}
+  }{
+    \hasTypeCtx{\Gamma}{\Delta}{\EProjPrim{\SortImmVar}{\SortTypConVar'}}{\TMk{\SortTypConVar'}{\CII}}
+  }{TAProjNC} \\
+
+  \judgment{
+    \hasTypeCtx{\Gamma}{\Delta}{\SortImmVar}{\TMk{\SortTypConVar}{\CNI}}
+  }{
+    \hasTypeCtx{\Gamma}{\Delta}{\EProjIndet{\SortImmVar}{\SortTypConVar'}}{\TMk{\SortTypConVar'}{\CII}}
+  }{TAProjNI} \\
+
+  \judgment{
+    \hasTypeCtx{\Gamma}{\Delta}{\SortImmVar}{\TMk{\SortTypConVar}{\CII}} \\\\
+    \hasTypeCtx{\extendCtx{\Gamma}{x}{\TMk{\SortTypConVar}{\CNC}}}{\Delta}{\SortBlockVar}{\SortTypVar} \\
+    \hasTypeCtx{\extendCtx{\Gamma}{x'}{\TMk{\SortTypConVar}{\CNI}}}{\Delta}{\SortBlockVar'}{\SortTypVar}
+  }{
+    \hasTypeCtx{\Gamma}{\Delta}{
+      \EBranchWith{\SortImmVar}
+        \EBranchBr{x}{\SortBlockVar}
+        ~\EBranchBr{x'}{\SortBlockVar'}
+      }{\SortTypVar}
+  }{TABranch}
+\end{mathpar}
+
+\end{document}

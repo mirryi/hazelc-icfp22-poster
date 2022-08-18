@@ -1,0 +1,58 @@
+\documentclass[border=3pt, varwidth]{standalone}
+
+\usepackage{xcolor}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+\usepackage{mathpartir}
+\usepackage{stmaryrd}
+\usepackage{bm}
+
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage{libertinust1math}
+  \usepackage{libertine}
+\else
+  \usepackage{libertinus}
+\fi
+
+\definecolor{lavender}{RGB}{162,85,162}
+
+\newcommand{\SyNEHole}[2]{\ensuremath{\textcolor{lavender}{\bm{\llparenthesis}}#1\textcolor{lavender}{\bm{\rrparenthesis}_#2}}}
+\newcommand{\SyEHole}[1]{\ensuremath{\SyNEHole{}{#1}}}
+
+\newcommand{\SyTInt}{\ensuremath{\textsf{Int}}}
+\newcommand{\SyTBool}{\ensuremath{\textsf{Bool}}}
+
+\newcommand{\SyArrow}{\ensuremath{~\to~}}
+\newcommand{\SyBar}{\ensuremath{\vert~}}
+\newcommand{\SyBranch}{\ensuremath{\textbf{branch}~}}
+\newcommand{\SyColon}{\ensuremath{~\textbf{:}~}}
+\newcommand{\SyInn}{\ensuremath{~\textbf{in}~}}
+\newcommand{\SyIn}{\ensuremath{\textbf{in}~}}
+\newcommand{\SyLet}{\ensuremath{\textbf{let}~}}
+\newcommand{\SyWith}{\ensuremath{~\textbf{with}~}}
+\newcommand{\SyWrap}{\ensuremath{\textbf{wrap}}}
+
+\newcommand{\SyCastL}{\ensuremath{\langle}}
+\newcommand{\SyCastR}{\ensuremath{\rangle}}
+
+\newcommand{\SyPlus}{\ensuremath{+}}
+\newcommand{\SyTimes}{\ensuremath{*}}
+\newcommand{\SyTrue}{\ensuremath{\textrm{true}}}
+
+\newcommand{\Indent}{\ensuremath{\hspace{10pt}}}
+
+\newcommand{\isConsistent}[2]{\ensuremath{#1 \sim #2}}
+\newcommand{\isNotConsistent}[2]{\ensuremath{#1 \nsim #2}}
+
+\newcommand{\hasType}[2]{\ensuremath{#1 : #2}}
+\newcommand{\hasTypeCtx}[4]{\ensuremath{#1, ~#2 \vdash \hasType{#3}{#4}}}
+
+\newcommand{\extendCtx}[3]{\ensuremath{#1 ; ~\hasType{#2}{#3}}}
+
+\newcommand{\rulen}[1]{~~\text{(#1)}}
+\newcommand{\judgment}[3]{\inferrule{#1}{#2}\rulen{\textsc{#3}}}
+\newcommand{\judgbox}[1]{\noindent \fbox{$#1$}}

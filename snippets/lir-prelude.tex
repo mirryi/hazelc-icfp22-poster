@@ -1,0 +1,55 @@
+\input{prelude}
+
+\newcommand{\SyEmbed}{\textbf{emb}}
+\newcommand{\SyProj}{\textbf{proj}}
+
+\newcommand{\SortNComplete}{\ensuremath{\textsf{(Necessarily) Completeness}}}
+\newcommand{\SortNCompleteVar}{\ensuremath{k}}
+\newcommand{\SortComplete}{\ensuremath{\textsf{Completeness}}}
+\newcommand{\SortCompleteVar}{\ensuremath{\overline{k}}}
+\newcommand{\SortTypCon}{\ensuremath{\textsf{Concrete Type}}}
+\newcommand{\SortTypConVar}{\ensuremath{\tau}}
+\newcommand{\SortTyp}{\ensuremath{\textsf{Type}}}
+\newcommand{\SortTypVar}{\ensuremath{\overline{\tau}}}
+\newcommand{\SortStmt}{\ensuremath{\textsf{Statement}}}
+\newcommand{\SortStmtVar}{\ensuremath{s}}
+\newcommand{\SortComp}{\ensuremath{\textsf{Composite Expression}}}
+\newcommand{\SortCompVar}{\ensuremath{c}}
+\newcommand{\SortImm}{\ensuremath{\textsf{Immediate Expression}}}
+\newcommand{\SortImmVar}{\ensuremath{im}}
+\newcommand{\SortBlock}{\ensuremath{\textsf{Block}}}
+\newcommand{\SortBlockVar}{\ensuremath{b}}
+\newcommand{\SortHoleId}{\ensuremath{u}}
+
+\newcommand{\CNC}{\ensuremath{\textsf{nc}}}
+\newcommand{\CNI}{\ensuremath{\textsf{ni}}}
+\newcommand{\CII}{\ensuremath{\textsf{ii}}}
+
+\newcommand{\TCHole}{\ensuremath{\SyEHole{\cdot}}}
+\newcommand{\TCInt}{\ensuremath{\SyTInt}}
+\newcommand{\TCBool}{\ensuremath{\SyTBool}}
+
+\newcommand{\TMk}[2]{\ensuremath{#1[#2]}}
+
+\newcommand{\ELet}[2]{\ensuremath{\SyLet #1 = #2}}
+\newcommand{\EInn}{\ensuremath{\SyInn}}
+\newcommand{\EIn}[1]{\ensuremath{\SyIn #1}}
+\newcommand{\EBranchWith}[1]{\ensuremath{\SyBranch #1 \SyWith}}
+\newcommand{\EBranchBr}[2]{\ensuremath{\SyBar #1 \SyArrow #2}}
+
+\newcommand{\EWrapIndet}[1]{\ensuremath{\SyWrap_{?}~ #1}}
+\newcommand{\EWrapMaybe}[1]{\ensuremath{\SyWrap_{??}~ #1}}
+\newcommand{\EEmbedPrim}[1]{\ensuremath{\SyEmbed~ #1}}
+\newcommand{\EEmbedIndet}[1]{\ensuremath{\SyEmbed_{?}~ #1}}
+\newcommand{\EProjPrim}[2]{\ensuremath{\SyProj[#2]~ #1}}
+\newcommand{\EProjIndet}[2]{\ensuremath{\SyProj_{?}[#2]~ #1}}
+
+\newcommand{\EPlusPrim}[2]{\ensuremath{#1 \SyPlus #2}}
+\newcommand{\ETimesPrim}[2]{\ensuremath{#1 \SyTimes #2}}
+\newcommand{\EPlusIndet}[2]{\ensuremath{#1 \SyPlus_{?} #2}}
+\newcommand{\ETimesIndet}[2]{\ensuremath{#1 \SyTimes_{?} #2}}
+
+\newcommand{\ETrue}{\ensuremath{\SyTrue}}
+\newcommand{\EEHole}[1]{\ensuremath{\SyEHole{#1}}}
+
+\newcommand{\ENamed}[2]{\ensuremath{t_{#1}^{{\color{gray}#2}}}}

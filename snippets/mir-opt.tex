@@ -1,0 +1,34 @@
+\input{prelude}
+
+\newcommand{\THole}{\ensuremath{\SyEHole{\cdot}}}
+\newcommand{\TInt}{\ensuremath{\SyTInt}}
+
+\newcommand{\ELet}[2]{\ensuremath{\SyLet #1 = #2}}
+\newcommand{\ELetAnn}[3]{\ensuremath{\SyLet #1 \SyColon #2 = #3}}
+\newcommand{\EInn}{\ensuremath{\SyInn}}
+\newcommand{\EIn}[1]{\ensuremath{\SyIn #1}}
+\newcommand{\EPlus}[2]{\ensuremath{#1 \SyPlus #2}}
+\newcommand{\ETimes}[2]{\ensuremath{#1 \SyTimes #2}}
+\newcommand{\ECast}[2]{\ensuremath{#1 \SyCastL #2 \SyCastR}}
+
+\newcommand{\ETrue}{\ensuremath{\SyTrue}}
+\newcommand{\EEHole}[1]{\ensuremath{\SyEHole{#1}}}
+
+\newcommand{\ENamed}[2]{\ensuremath{t_{#1}^{{\color{gray}#2}}}}
+
+\begin{document}
+  % let t1 = true in
+  % let t2_x = t1<?> in
+  % let t3 = t2_x<Int> in
+  % let t4 = t3 * 6 in
+  % let t5 = t4 + ?1 in
+  % t3 + t5
+  \[\begin{array}{l}
+    \ELet{t_1}{\ETrue} \EInn \\
+    \ELet{\ENamed{2}{x}}{\ECast{t_1}{\THole}} \EInn \\
+    \ELet{t_3}{\ECast{\ENamed{t}{x}}{\TInt}} \EInn \\
+    \ELet{t_4}{\ETimes{t_3}{6}} \EInn \\
+    \ELet{t_5}{\EPlus{t_4}{\EEHole{1}}} \EInn \\
+    \EPlus{t_3}{t_5}
+  \end{array}\]
+\end{document}
