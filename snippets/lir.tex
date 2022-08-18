@@ -18,20 +18,20 @@
   %       t9 +? t12
   \[\begin{array}{l}
     \ELet{t_1}{\ETrue} \EInn \\
-    \ELet{\ENamed{2}{x}}{\ECastPrim{t_1}{\TCHole}} \EInn \\
-    \ELet{t_3}{\ECastIndet{\ENamed{2}{x}}{\TCInt}} \EInn \\
+    \ELet{\ENamed{2}{x}}{\EEmbedPrim{t_1}} \EInn \\
+    \ELet{t_3}{\EProj{\ENamed{2}{x}}{\TCInt}} \EInn \\
 
     \EBranchWith{t_3} \\
       \Indent \EBranchBr{t_4}{} \\
         \Indent \Indent \ELet{t_5}{\ETimesPrim{t_4}{6}} \EInn \\
         \Indent \Indent \ELet{t_6}{\EWrapIndet{t_5}} \EInn \\
-        \Indent \Indent \ELet{t_7}{\EPlusIndet{t_6}{\EEHole{1}}} \EInn \\
+        \Indent \Indent \ELet{t_7}{\EPlusIndet{t_6}{\EEHole{1}{\sigma_1}}} \EInn \\
         \Indent \Indent \ELet{t_8}{\EWrapIndet{t_4}} \EInn \\
         \Indent \Indent \EPlusIndet{t_8}{t_7} \\
       \Indent \EBranchBr{t_{9}}{} \\
         \Indent \Indent \ELet{t_{10}}{\EWrapIndet{6}} \EInn \\
         \Indent \Indent \ELet{t_{11}}{\ETimesIndet{t_{9}}{t_{10}}} \EInn \\
-        \Indent \Indent \ELet{t_{12}}{\EPlusIndet{t_{11}}{\EEHole{1}}} \EInn \\
+        \Indent \Indent \ELet{t_{12}}{\EPlusIndet{t_{11}}{\EEHole{1}{\sigma_1}}} \EInn \\
         \Indent \Indent \EPlusIndet{t_{9}}{t_{12}}
   \end{array}\]
 \end{document}

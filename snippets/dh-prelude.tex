@@ -1,21 +1,17 @@
 \input{prelude}
 
 \newcommand{\THole}{\ensuremath{\SyEHole{}{}}}
+\newcommand{\TBool}{\ensuremath{\SyTBool}}
+\newcommand{\TInt}{\ensuremath{\SyTInt}}
 
 \newcommand{\ELet}[2]{\ensuremath{\SyLet #1 = #2}}
 \newcommand{\ELetAnn}[3]{\ensuremath{\SyLet #1 \SyColon #2 = #3}}
 \newcommand{\EInn}{\ensuremath{\SyInn}}
+\newcommand{\EIn}[1]{\ensuremath{\SyIn #1}}
 \newcommand{\EPlus}[2]{\ensuremath{#1 \SyPlus #2}}
 \newcommand{\ETimes}[2]{\ensuremath{#1 \SyTimes #2}}
+\newcommand{\ECast}[2]{\ensuremath{#1 \SyCastL #2 \SyCastR}}
+\newcommand{\EFailedCast}[3]{\ensuremath{\ECast{#1}{#2 \SyNDArrow #3}}}
 
 \newcommand{\ETrue}{\ensuremath{\SyTrue}}
-\newcommand{\EEHole}[1]{\ensuremath{\SyEHole{}{#1}}}
-
-\begin{document}
-  % let x : ? = true in 
-  % let y = x + ((x * 6) + ?1) in
-  \[\begin{array}{l}
-    \ELetAnn{x}{\THole}{\ETrue} \EInn \\
-    \EPlus{x}{(\EPlus{\ETimes{x}{6}}{\EEHole{1}})}
-  \end{array}\]
-\end{document}
+\newcommand{\EEHole}[1]{\ensuremath{\SyEHole{#1}{\sigma_{#1}}}}

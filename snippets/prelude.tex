@@ -20,12 +20,14 @@
 
 \definecolor{lavender}{RGB}{162,85,162}
 
-\newcommand{\SyNEHole}[2]{\ensuremath{\textcolor{lavender}{\bm{\llparenthesis}}#1\textcolor{lavender}{\bm{\rrparenthesis}_#2}}}
-\newcommand{\SyEHole}[1]{\ensuremath{\SyNEHole{}{#1}}}
+\newcommand{\SyNEHole}[3]{\ensuremath{\textcolor{lavender}{\bm{\llparenthesis}}#1\textcolor{lavender}{\bm{\rrparenthesis}^{#2}_{#3}}}}
+\newcommand{\SyEHole}[2]{\ensuremath{\SyNEHole{}{#1}{#2}}}
 
 \newcommand{\SyTInt}{\ensuremath{\textsf{Int}}}
 \newcommand{\SyTBool}{\ensuremath{\textsf{Bool}}}
 
+\newcommand{\SyDArrow}{\ensuremath{~\Rightarrow~}}
+\newcommand{\SyNDArrow}{\ensuremath{~\nRightarrow~}}
 \newcommand{\SyArrow}{\ensuremath{~\to~}}
 \newcommand{\SyBar}{\ensuremath{\vert~}}
 \newcommand{\SyBranch}{\ensuremath{\textbf{branch}~}}

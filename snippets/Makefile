@@ -5,4 +5,9 @@
 %.svg: %.pdf
 	pdf2svg $*.pdf $@
 
-all: uh.svg dh.svg hir.svg mir.svg mir-opt.svg lir.svg lir-rules.svg
+.PHONY: all
+all: uh.svg dh.svg dh-failed-cast.svg hir.svg mir.svg mir-opt.svg lir.svg lir-rules.svg
+
+.PHONY: clean
+clean: 
+	rm -f *.svg *.pdf

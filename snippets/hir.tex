@@ -1,6 +1,6 @@
 \input{prelude}
 
-\newcommand{\THole}{\ensuremath{\SyEHole{\cdot}}}
+\newcommand{\THole}{\ensuremath{\SyEHole{}{}}}
 \newcommand{\TInt}{\ensuremath{\SyTInt}}
 
 \newcommand{\ELet}[2]{\ensuremath{\SyLet #1 = #2}}
@@ -12,7 +12,7 @@
 \newcommand{\ECast}[2]{\ensuremath{#1 \SyCastL #2 \SyCastR}}
 
 \newcommand{\ETrue}{\ensuremath{\SyTrue}}
-\newcommand{\EEHole}[1]{\ensuremath{\SyEHole{#1}}}
+\newcommand{\EEHole}[1]{\ensuremath{\SyEHole{#1}{\sigma_{#1}}}}
 
 \begin{document}
   % let x = true<?> in

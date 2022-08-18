@@ -1,6 +1,6 @@
 \input{prelude}
 
-\newcommand{\THole}{\ensuremath{\SyEHole{\cdot}}}
+\newcommand{\THole}{\ensuremath{\SyEHole{}{}}}
 \newcommand{\TInt}{\ensuremath{\SyTInt}}
 
 \newcommand{\ELet}[2]{\ensuremath{\SyLet #1 = #2}}
@@ -12,7 +12,7 @@
 \newcommand{\ECast}[2]{\ensuremath{#1 \SyCastL #2 \SyCastR}}
 
 \newcommand{\ETrue}{\ensuremath{\SyTrue}}
-\newcommand{\EEHole}[1]{\ensuremath{\SyEHole{#1}}}
+\newcommand{\EEHole}[1]{\ensuremath{\SyEHole{#1}{\sigma_{#1}}}}
 
 \newcommand{\ENamed}[2]{\ensuremath{t_{#1}^{{\color{gray}#2}}}}
 
@@ -26,7 +26,7 @@
   \[\begin{array}{l}
     \ELet{t_1}{\ETrue} \EInn \\
     \ELet{\ENamed{2}{x}}{\ECast{t_1}{\THole}} \EInn \\
-    \ELet{t_3}{\ECast{\ENamed{t}{x}}{\TInt}} \EInn \\
+    \ELet{t_3}{\ECast{\ENamed{2}{x}}{\TInt}} \EInn \\
     \ELet{t_4}{\ETimes{t_3}{6}} \EInn \\
     \ELet{t_5}{\EPlus{t_4}{\EEHole{1}}} \EInn \\
     \EPlus{t_3}{t_5}

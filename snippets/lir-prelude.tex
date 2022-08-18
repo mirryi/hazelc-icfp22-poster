@@ -25,7 +25,7 @@
 \newcommand{\CNI}{\ensuremath{\textsf{ni}}}
 \newcommand{\CII}{\ensuremath{\textsf{ii}}}
 
-\newcommand{\TCHole}{\ensuremath{\SyEHole{\cdot}}}
+\newcommand{\TCHole}{\ensuremath{\SyEHole{}{}}}
 \newcommand{\TCInt}{\ensuremath{\SyTInt}}
 \newcommand{\TCBool}{\ensuremath{\SyTBool}}
 
@@ -41,8 +41,7 @@
 \newcommand{\EWrapMaybe}[1]{\ensuremath{\SyWrap_{??}~ #1}}
 \newcommand{\EEmbedPrim}[1]{\ensuremath{\SyEmbed~ #1}}
 \newcommand{\EEmbedIndet}[1]{\ensuremath{\SyEmbed_{?}~ #1}}
-\newcommand{\EProjPrim}[2]{\ensuremath{\SyProj[#2]~ #1}}
-\newcommand{\EProjIndet}[2]{\ensuremath{\SyProj_{?}[#2]~ #1}}
+\newcommand{\EProj}[2]{\ensuremath{\SyProj[#2]~ #1}}
 
 \newcommand{\EPlusPrim}[2]{\ensuremath{#1 \SyPlus #2}}
 \newcommand{\ETimesPrim}[2]{\ensuremath{#1 \SyTimes #2}}
@@ -50,6 +49,6 @@
 \newcommand{\ETimesIndet}[2]{\ensuremath{#1 \SyTimes_{?} #2}}
 
 \newcommand{\ETrue}{\ensuremath{\SyTrue}}
-\newcommand{\EEHole}[1]{\ensuremath{\SyEHole{#1}}}
+\newcommand{\EEHole}[2]{\ensuremath{\SyEHole{#1}{#2}}}
 
 \newcommand{\ENamed}[2]{\ensuremath{t_{#1}^{{\color{gray}#2}}}}
