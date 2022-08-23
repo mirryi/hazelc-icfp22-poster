@@ -2,16 +2,20 @@
 
 \begin{document}
   \begin{tabular}{rl}
-    \textbf{tag} & \textbf{pointer} \\
-    \textsf{100} & \textsf{xxx...xxx}
+    \textbf{pointer}   & \textbf{tag} \\
+    \textsf{xxx...xxx} & \textsf{100} \\
+    \textsf{xxx...xxx} & \textsf{000}
   \end{tabular}
 
-  \begin{tabular}{rl}
-    \textsf{000} & \textsf{xxx...xxx}
+  \begin{tabular}{rlll}
+    \textbf{bits}  & 32               & 32        & 64 \\
+    \textbf{what}  & \textit{boxed number tag} & \textit{Int64 tag} & \textit{value} \\
+    \textbf{value} & $\ldots{}00101$ & $\ldots{}00100$ & $\ldots{}$
   \end{tabular}
 
-  \begin{tabular}{rll}
-    \textbf{bits} & 32  & 32 \\
-    \textbf{what} & tag & value/result
+  \begin{tabular}{rllllllll}
+    \textbf{bits}  & 32              & 32 & 32 & 32 & 32 & 32 & $\cdots$ & 32 \\
+    \textbf{what}  & \textit{adt tag} & \textit{module tag} & \textit{type tag} & \textit{variant tag} & \textit{arity} & \textit{elt$_0$} & $\cdots$ & \textit{elt$_n$} \\
+    \textbf{value} & $\ldots{}00010$ & $\ldots{}$ & $\ldots{}$ & $\ldots{}$ & $\ldots{}$ & $\ldots{}$ & $\ldots{}$ & $\ldots{}$
   \end{tabular}
 \end{document}
