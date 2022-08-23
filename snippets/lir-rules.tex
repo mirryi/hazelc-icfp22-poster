@@ -20,9 +20,8 @@
                    &                   & \mid         & \EBranchWith{\SortImmVar}
                                                      \EBranchBr{x}{\SortBlockVar}
                                                     ~\EBranchBr{x'}{\SortBlockVar} \\
-                   &                   & \mid         & \cdots \\
-    \SortStmt      & \SortStmtVar      & \Coloneqq & \ELet{x}{\SortCompVar} \EInn \mid \cdots                                                    \\
-    \SortBlock      & \SortBlockVar      & \Coloneqq & \SortStmtVar^{*} \SortCompVar
+                   &                   & \mid         & \ELet{x}{\SortCompVar} \EInn \SortCompVar \\
+                   &                   & \mid         & \cdots
   \end{array}\]
 \end{center}
 %
@@ -69,14 +68,21 @@
   }{TAProj} \\
 
   \judgment{
+    \hasTypeCtx{\Gamma}{\Delta}{\SortCompVar}{\SortTypVar} \\
+    \hasTypeCtx{\extendCtx{\Gamma}{x}{\SortTypVar}}{\Delta}{\SortCompVar'}{\SortTypVar'}
+  }{
+    \hasTypeCtx{\Gamma}{\Delta}{\ELet{x}{\SortCompVar} \EInn \SortCompVar'}{\SortTypVar'}
+  }{TALet} \\
+
+  \judgment{
     \hasTypeCtx{\Gamma}{\Delta}{\SortImmVar}{\TMk{\SortTypConVar}{\CII}} \\\\
-    \hasTypeCtx{\extendCtx{\Gamma}{x}{\TMk{\SortTypConVar}{\CNC}}}{\Delta}{\SortBlockVar}{\SortTypVar} \\
-    \hasTypeCtx{\extendCtx{\Gamma}{x'}{\TMk{\SortTypConVar}{\CNI}}}{\Delta}{\SortBlockVar'}{\SortTypVar}
+    \hasTypeCtx{\extendCtx{\Gamma}{x}{\TMk{\SortTypConVar}{\CNC}}}{\Delta}{\SortCompVar}{\SortTypVar} \\
+    \hasTypeCtx{\extendCtx{\Gamma}{x'}{\TMk{\SortTypConVar}{\CNI}}}{\Delta}{\SortCompVar'}{\SortTypVar}
   }{
     \hasTypeCtx{\Gamma}{\Delta}{
       \EBranchWith{\SortImmVar}
-        \EBranchBr{x}{\SortBlockVar}
-        ~\EBranchBr{x'}{\SortBlockVar'}
+        \EBranchBr{x}{\SortCompVar}
+        ~\EBranchBr{x'}{\SortCompVar'}
       }{\SortTypVar}
   }{TABranch}
 \end{mathpar}

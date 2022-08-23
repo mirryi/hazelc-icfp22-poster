@@ -1,6 +1,6 @@
 \input{prelude}
 
-\newcommand{\SyBranch}{\ensuremath{\textbf{casecomplete}~}}
+\newcommand{\SyBranch}{\ensuremath{\textbf{compcase}~}}
 \newcommand{\SyEmbed}{\textbf{emb}}
 \newcommand{\SyProj}{\textbf{proj}}
 
@@ -17,9 +17,7 @@
 \newcommand{\SortComp}{\ensuremath{\textsf{Composite Expression}}}
 \newcommand{\SortCompVar}{\ensuremath{c}}
 \newcommand{\SortImm}{\ensuremath{\textsf{Immediate Expression}}}
-\newcommand{\SortImmVar}{\ensuremath{im}}
-\newcommand{\SortBlock}{\ensuremath{\textsf{Block}}}
-\newcommand{\SortBlockVar}{\ensuremath{b}}
+\newcommand{\SortImmVar}{\ensuremath{v}}
 \newcommand{\SortHoleId}{\ensuremath{u}}
 
 \newcommand{\CNC}{\ensuremath{\textsf{nc}}}
@@ -38,10 +36,10 @@
 \newcommand{\EBranchWith}[1]{\ensuremath{\SyBranch #1 \SyWith}}
 \newcommand{\EBranchBr}[2]{\ensuremath{\SyBar #1 \SyArrow #2}}
 
-\newcommand{\EWrapIndet}[1]{\ensuremath{\SyWrap_{?}~ #1}}
-\newcommand{\EWrapMaybe}[1]{\ensuremath{\SyWrap_{??}~ #1}}
-\newcommand{\EEmbedPrim}[1]{\ensuremath{\SyEmbed~ #1}}
-\newcommand{\EEmbedIndet}[1]{\ensuremath{\SyEmbed_{?}~ #1}}
+\newcommand{\EWrapIndet}[1]{\ensuremath{\SyWrap^{\CNI}~ #1}}
+\newcommand{\EWrapMaybe}[1]{\ensuremath{\SyWrap^{\CII}~ #1}}
+\newcommand{\EEmbedPrim}[1]{\ensuremath{\SyEmbed_{\CNC}~ #1}}
+\newcommand{\EEmbedIndet}[1]{\ensuremath{\SyEmbed_{\CNI}~ #1}}
 \newcommand{\EProj}[2]{\ensuremath{\SyProj[#2]~ #1}}
 
 \newcommand{\EPlusPrim}[2]{\ensuremath{#1 \SyPlus #2}}
