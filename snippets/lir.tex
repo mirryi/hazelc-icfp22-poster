@@ -2,9 +2,9 @@
 
 \begin{document}
   % let t1 = true in
-  % let t2_x = t1<?> in
-  % let t3 = t2_x<Int> in
-  % branch t3 with
+  % let t2_x = emb t1 in
+% let t3 = proj[Int] t2_x in
+  % casecomplete t3 with
   %   | t4 ->
   %       let t5 = t4 * 6 in
   %       let t6 = wrap? t5 in

@@ -6,7 +6,7 @@
 	pdf2svg $*.pdf $@
 
 .PHONY: all
-all: uh.svg dh.svg dh-failed-cast.svg hir.svg mir.svg mir-opt.svg lir.svg lir-rules.svg tags.svg tags-visual.svg
+all: uh.svg dh.svg dh-failed-cast.svg hir.svg mir.svg mir-opt.svg lir.svg lir-rules.svg grain.svg tags.svg tags-visual.svg
 
 .PHONY: clean
 clean: 
