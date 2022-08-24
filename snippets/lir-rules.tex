@@ -8,83 +8,102 @@
     \SortComplete  & \SortCompleteVar  & \Coloneqq & \SortNCompleteVar \mid \CII                                                                 \\
     \SortTypCon    & \SortTypConVar    & \Coloneqq & \TCHole \mid \TCInt \mid \TCBool \mid \cdots                                                   \\
     \SortTyp       & \SortTypVar       & \Coloneqq & \SortTypConVar[\SortCompleteVar]                                                            \\
-    \SortImm       & \SortImmVar       & \Coloneqq & x \mid \EEHole{\SortHoleId}{\sigma}
-                                                   \mid \underline{n} \mid \underline{b} \mid \cdots                                              \\
-    \SortComp      & \SortCompVar      & \Coloneqq & \EPlusPrim{\SortImmVar}{\SortImmVar} 
-                                                   \mid \EPlusIndet{\SortImmVar}{\SortImmVar} \\
-                   &                   & \mid         & \EWrapIndet{\SortImmVar}
-                                                   \mid \EWrapMaybe{\SortImmVar} \\
-                   &                   & \mid         & \EEmbedPrim{\SortImmVar}
-                                                   \mid \EEmbedIndet{\SortImmVar} \\
-                   &                   & \mid         & \EProj{\SortImmVar}{\SortTypConVar} \\
-                   &                   & \mid         & \EBranchWith{\SortImmVar}
-                                                     \EBranchBr{x}{\SortBlockVar}
-                                                    ~\EBranchBr{x'}{\SortBlockVar} \\
-                   &                   & \mid         & \ELet{x}{\SortCompVar} \EInn \SortCompVar \\
+    \SortValue       & \SortValueVar       & \Coloneqq & x \mid \EEHole{\SortHoleId}{\sigma}
+                                                   \mid \ENumLit \mid \EBoolLit \mid \cdots                                              \\
+    \SortComp      & \SortCompVar      & \Coloneqq & \SortValueVar 
+                                                   \mid \EPlusNC{\SortValueVar}{\SortValueVar} 
+                                                   \mid \EPlusNI{\SortValueVar}{\SortValueVar} \\
+                   &                   & \mid         & \EWrapIntoNI{\SortValueVar}
+                                                   \mid \EWrapIntoII{\SortValueVar} \\
+                   &                   & \mid         & \EEmbedNC{\SortValueVar}
+                                                   \mid \EEmbedNI{\SortValueVar}
+                                                   \mid \EProj{\SortValueVar}{\SortTypConVar} \\
+                   &                   & \mid         & \ECaseCompleteWith{\SortValueVar}
+                                                     \ECaseCompleteBranch{x}{\SortCompVar}
+                                                    ~\ECaseCompleteBranch{x'}{\SortCompVar} \\
+                   &                   & \mid         & \ELet{x}{\SortCompVar} \EIn \SortCompVar \\
                    &                   & \mid         & \cdots
   \end{array}\]
 \end{center}
 %
 \begin{mathpar}
   \judgment{
-    \SortHoleId :: \SortTypConVar[\Gamma'] \in \Delta \\
-    \hasTypeCtx{\Gamma}{\Delta}{\sigma}{\Gamma'}
+    \SortHoleId :: \SortTypConVar[\CtxVar'] \in \HoleCtxVar \\
+    \hasTypeCtx{\CtxVar}{\HoleCtxVar}{\sigma}{\CtxVar'}
   }{
-    \hasTypeCtx{\Gamma}{\Delta}{\EEHole{\SortHoleId}{\sigma}}{\TMk{\SortTypConVar}{\CNI}}
+    \hasTypeCtx{\CtxVar}{\HoleCtxVar}{\EEHole{\SortHoleId}{\sigma}}{\TMk{\SortTypConVar}{\CNI}}
   }{TAEHole} \\
 
   \judgment{ }{
-    \hasTypeCtx{\Gamma}{\Delta}{\underline{n}}{\TMk{\TCInt}{\CNC}}
+    \hasTypeCtx{\CtxVar}{\HoleCtxVar}{\ENumLit}{\TIntNC}
   }{TANumLit} \\
 
-  \judgment{
-    \hasTypeCtx{\Gamma}{\Delta}{\SortImmVar}{\TMk{\SortTypConVar}{\CNC}}
-  }{
-    \hasTypeCtx{\Gamma}{\Delta}{\EWrapIndet{\SortImmVar}}{\TMk{\SortTypConVar}{\CNI}}
-  }{TAWrap?} \\
+  \judgment{ }{
+    \hasTypeCtx{\CtxVar}{\HoleCtxVar}{\EBoolLit}{\TBoolNC}
+  }{TABoolLit} \\
 
   \judgment{
-    \hasTypeCtx{\Gamma}{\Delta}{\SortImmVar}{\TMk{\SortTypConVar}{\SortNCompleteVar}}
+    \hasTypeCtx{\CtxVar}{\HoleCtxVar}{\SortValueVar}{\TMk{\TCInt}{\CNC}} \\
+    \hasTypeCtx{\CtxVar}{\HoleCtxVar}{\SortValueVar'}{\TMk{\TCInt}{\CNC}}
   }{
-    \hasTypeCtx{\Gamma}{\Delta}{\EWrapMaybe{\SortImmVar}}{\TMk{\SortTypConVar}{\CII}}
-  }{TAWrap??} \\
+    \hasTypeCtx{\CtxVar}{\HoleCtxVar}{\EPlusNC{\SortValueVar}{\SortValueVar'}}{\TMk{\TCInt}{\CNC}}
+  }{TAPlusNC} \\
 
   \judgment{
-    \hasTypeCtx{\Gamma}{\Delta}{\SortImmVar}{\TMk{\SortTypConVar}{\CNC}}
+    \hasTypeCtx{\CtxVar}{\HoleCtxVar}{\SortValueVar}{\TMk{\TCInt}{\CNI}} \\
+    \hasTypeCtx{\CtxVar}{\HoleCtxVar}{\SortValueVar'}{\TMk{\TCInt}{\CNI}}
   }{
-    \hasTypeCtx{\Gamma}{\Delta}{\EEmbedPrim{\SortImmVar}}{\TMk{\TCHole}{\CNI}}
+    \hasTypeCtx{\CtxVar}{\HoleCtxVar}{\EPlusNC{\SortValueVar}{\SortValueVar'}}{\TMk{\TCInt}{\CNI}}
+  }{TAPlusNI} \\
+
+  \judgment{
+    \hasTypeCtx{\CtxVar}{\HoleCtxVar}{\SortValueVar}{\TMk{\SortTypConVar}{\CNC}}
+  }{
+    \hasTypeCtx{\CtxVar}{\HoleCtxVar}{\EWrapIntoNI{\SortValueVar}}{\TMk{\SortTypConVar}{\CNI}}
+  }{TAWrapIntoNI} \\
+
+  \judgment{
+    \hasTypeCtx{\CtxVar}{\HoleCtxVar}{\SortValueVar}{\TMk{\SortTypConVar}{\SortNCompleteVar}}
+  }{
+    \hasTypeCtx{\CtxVar}{\HoleCtxVar}{\EWrapIntoII{\SortValueVar}}{\TMk{\SortTypConVar}{\CII}}
+  }{TAWrapIntoII} \\
+
+  \judgment{
+    \hasTypeCtx{\CtxVar}{\HoleCtxVar}{\SortValueVar}{\TMk{\SortTypConVar}{\CNC}}
+  }{
+    \hasTypeCtx{\CtxVar}{\HoleCtxVar}{\EEmbedNC{\SortValueVar}}{\TMk{\TCHole}{\CNI}}
   }{TAEmbedNC} \\
 
   \judgment{
-    \hasTypeCtx{\Gamma}{\Delta}{\SortImmVar}{\TMk{\SortTypConVar}{\CNI}}
+    \hasTypeCtx{\CtxVar}{\HoleCtxVar}{\SortValueVar}{\TMk{\SortTypConVar}{\CNI}}
   }{
-    \hasTypeCtx{\Gamma}{\Delta}{\EEmbedIndet{\SortImmVar}}{\TMk{\TCHole}{\CNI}}
+    \hasTypeCtx{\CtxVar}{\HoleCtxVar}{\EEmbedNI{\SortValueVar}}{\TMk{\TCHole}{\CNI}}
   }{TAEmbedNI} \\
 
   \judgment{
-    \hasTypeCtx{\Gamma}{\Delta}{\SortImmVar}{\TMk{\SortTypConVar}{\CNI}}
+    \hasTypeCtx{\CtxVar}{\HoleCtxVar}{\SortValueVar}{\TMk{\SortTypConVar}{\CNI}}
   }{
-    \hasTypeCtx{\Gamma}{\Delta}{\EProj{\SortImmVar}{\SortTypConVar'}}{\TMk{\SortTypConVar'}{\CII}}
+    \hasTypeCtx{\CtxVar}{\HoleCtxVar}{\EProj{\SortValueVar}{\SortTypConVar'}}{\TMk{\SortTypConVar'}{\CII}}
   }{TAProj} \\
 
   \judgment{
-    \hasTypeCtx{\Gamma}{\Delta}{\SortCompVar}{\SortTypVar} \\
-    \hasTypeCtx{\extendCtx{\Gamma}{x}{\SortTypVar}}{\Delta}{\SortCompVar'}{\SortTypVar'}
+    \hasTypeCtx{\CtxVar}{\HoleCtxVar}{\SortCompVar}{\SortTypVar} \\
+    \hasTypeCtx{\extendCtx{\CtxVar}{x}{\SortTypVar}}{\HoleCtxVar}{\SortCompVar'}{\SortTypVar'}
   }{
-    \hasTypeCtx{\Gamma}{\Delta}{\ELet{x}{\SortCompVar} \EInn \SortCompVar'}{\SortTypVar'}
+    \hasTypeCtx{\CtxVar}{\HoleCtxVar}{\ELet{x}{\SortCompVar} \EIn \SortCompVar'}{\SortTypVar'}
   }{TALet} \\
 
   \judgment{
-    \hasTypeCtx{\Gamma}{\Delta}{\SortImmVar}{\TMk{\SortTypConVar}{\CII}} \\\\
-    \hasTypeCtx{\extendCtx{\Gamma}{x}{\TMk{\SortTypConVar}{\CNC}}}{\Delta}{\SortCompVar}{\SortTypVar} \\
-    \hasTypeCtx{\extendCtx{\Gamma}{x'}{\TMk{\SortTypConVar}{\CNI}}}{\Delta}{\SortCompVar'}{\SortTypVar}
+    \hasTypeCtx{\CtxVar}{\HoleCtxVar}{\SortValueVar}{\TMk{\SortTypConVar}{\CII}} \\\\
+    \hasTypeCtx{\extendCtx{\CtxVar}{x}{\TMk{\SortTypConVar}{\CNC}}}{\HoleCtxVar}{\SortCompVar}{\SortTypVar} \\
+    \hasTypeCtx{\extendCtx{\CtxVar}{x'}{\TMk{\SortTypConVar}{\CNI}}}{\HoleCtxVar}{\SortCompVar'}{\SortTypVar}
   }{
-    \hasTypeCtx{\Gamma}{\Delta}{
-      \EBranchWith{\SortImmVar}
-        \EBranchBr{x}{\SortCompVar}
-        ~\EBranchBr{x'}{\SortCompVar'}
+    \hasTypeCtx{\CtxVar}{\HoleCtxVar}{
+      \ECaseCompleteWith{\SortValueVar}
+        \ECaseCompleteBranch{x}{\SortCompVar}
+        ~\ECaseCompleteBranch{x'}{\SortCompVar'}
       }{\SortTypVar}
-  }{TABranch}
+  }{TACaseComplete}
 \end{mathpar}
 
 \end{document}

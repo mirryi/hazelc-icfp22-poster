@@ -14,11 +14,4 @@
 \newcommand{\ETrue}{\ensuremath{\SyTrue}}
 \newcommand{\EEHole}[1]{\ensuremath{\SyEHole{#1}{\sigma_{#1}}}}
 
-\begin{document}
-  % let x = true<?> in
-  % x<Int> + ((x<Int> * 6) + ?1)
-  \[\begin{array}{l}
-    \ELet{x}{\ECast{\ETrue}{\THole}} \EIn \\
-    \EPlus{\ECast{x}{\TInt}}{(\EPlus{(\ETimes{\ECast{x}{\TInt}}{6})}{\EEHole{1}})}
-  \end{array}\]
-\end{document}
+\newcommand{\EVarNamed}[2]{\ensuremath{t_{#1}^{{\color{gray}#2}}}}

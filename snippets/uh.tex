@@ -4,7 +4,7 @@
 
 \newcommand{\ELet}[2]{\ensuremath{\SyLet #1 = #2}}
 \newcommand{\ELetAnn}[3]{\ensuremath{\SyLet #1 \SyColon #2 = #3}}
-\newcommand{\EInn}{\ensuremath{\SyInn}}
+\newcommand{\EIn}{\ensuremath{\SyInn}}
 \newcommand{\EPlus}[2]{\ensuremath{#1 \SyPlus #2}}
 \newcommand{\ETimes}[2]{\ensuremath{#1 \SyTimes #2}}
 
@@ -15,7 +15,7 @@
   % let x : ? = true in 
   % let y = x + ((x * 6) + ?1) in
   \[\begin{array}{l}
-    \ELetAnn{x}{\THole}{\ETrue} \EInn \\
+    \ELetAnn{x}{\THole}{\ETrue} \EIn \\
     \EPlus{x}{(\EPlus{\ETimes{x}{6}}{\EEHole{1}})}
   \end{array}\]
 \end{document}

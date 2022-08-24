@@ -1,23 +1,21 @@
 \input{prelude}
 
-\newcommand{\SyBranch}{\ensuremath{\textbf{compcase}~}}
-\newcommand{\SyEmbed}{\textbf{emb}}
-\newcommand{\SyProj}{\textbf{proj}}
+\newcommand{\SyCaseComplete}{\ensuremath{\textbf{casecomplete}~}}
+\newcommand{\SyEmbed}{\ensuremath{\textbf{emb}}}
+\newcommand{\SyProj}{\ensuremath{\textbf{proj}}}
 
-\newcommand{\SortNComplete}{\ensuremath{\textsf{(Necessarily) Completeness}}}
+\newcommand{\SortNComplete}{\ensuremath{\textsf{Completeness}}}
 \newcommand{\SortNCompleteVar}{\ensuremath{k}}
-\newcommand{\SortComplete}{\ensuremath{\textsf{Completeness}}}
+\newcommand{\SortComplete}{\ensuremath{\textsf{}}}
 \newcommand{\SortCompleteVar}{\ensuremath{\overline{k}}}
-\newcommand{\SortTypCon}{\ensuremath{\textsf{Concrete Type}}}
+\newcommand{\SortTypCon}{\ensuremath{\textsf{Type}}}
 \newcommand{\SortTypConVar}{\ensuremath{\tau}}
-\newcommand{\SortTyp}{\ensuremath{\textsf{Type}}}
+\newcommand{\SortTyp}{\ensuremath{\textsf{}}}
 \newcommand{\SortTypVar}{\ensuremath{\overline{\tau}}}
-\newcommand{\SortStmt}{\ensuremath{\textsf{Statement}}}
-\newcommand{\SortStmtVar}{\ensuremath{s}}
-\newcommand{\SortComp}{\ensuremath{\textsf{Composite Expression}}}
+\newcommand{\SortComp}{\ensuremath{\textsf{Composite}}}
 \newcommand{\SortCompVar}{\ensuremath{c}}
-\newcommand{\SortImm}{\ensuremath{\textsf{Immediate Expression}}}
-\newcommand{\SortImmVar}{\ensuremath{v}}
+\newcommand{\SortValue}{\ensuremath{\textsf{Value}}}
+\newcommand{\SortValueVar}{\ensuremath{v}}
 \newcommand{\SortHoleId}{\ensuremath{u}}
 
 \newcommand{\CNC}{\ensuremath{\textsf{nc}}}
@@ -28,26 +26,31 @@
 \newcommand{\TCInt}{\ensuremath{\SyTInt}}
 \newcommand{\TCBool}{\ensuremath{\SyTBool}}
 
+\newcommand{\TIntNC}{\ensuremath{\TMk{\TCInt}{\CNC}}}
+\newcommand{\TBoolNC}{\ensuremath{\TMk{\TCBool}{\CNC}}}
+
 \newcommand{\TMk}[2]{\ensuremath{#1[#2]}}
 
+\newcommand{\ENumLit}{\ensuremath{\underline{n}}}
+\newcommand{\EBoolLit}{\ensuremath{\underline{b}}}
 \newcommand{\ELet}[2]{\ensuremath{\SyLet #1 = #2}}
-\newcommand{\EInn}{\ensuremath{\SyInn}}
-\newcommand{\EIn}[1]{\ensuremath{\SyIn #1}}
-\newcommand{\EBranchWith}[1]{\ensuremath{\SyBranch #1 \SyWith}}
-\newcommand{\EBranchBr}[2]{\ensuremath{\SyBar #1 \SyArrow #2}}
+\newcommand{\EIn}{\ensuremath{\SyInn}}
+\newcommand{\EInn}[1]{\ensuremath{\SyIn #1}}
+\newcommand{\ECaseCompleteWith}[1]{\ensuremath{\SyCaseComplete #1 \SyWith}}
+\newcommand{\ECaseCompleteBranch}[2]{\ensuremath{\SyBar #1 \SyArrow #2}}
 
-\newcommand{\EWrapIndet}[1]{\ensuremath{\SyWrap^{\CNI}~ #1}}
-\newcommand{\EWrapMaybe}[1]{\ensuremath{\SyWrap^{\CII}~ #1}}
-\newcommand{\EEmbedPrim}[1]{\ensuremath{\SyEmbed_{\CNC}~ #1}}
-\newcommand{\EEmbedIndet}[1]{\ensuremath{\SyEmbed_{\CNI}~ #1}}
+\newcommand{\EWrapIntoNI}[1]{\ensuremath{\SyWrap^{\CNI}~ #1}}
+\newcommand{\EWrapIntoII}[1]{\ensuremath{\SyWrap^{\CII}~ #1}}
+\newcommand{\EEmbedNC}[1]{\ensuremath{\SyEmbed_{\CNC}~ #1}}
+\newcommand{\EEmbedNI}[1]{\ensuremath{\SyEmbed_{\CNI}~ #1}}
 \newcommand{\EProj}[2]{\ensuremath{\SyProj[#2]~ #1}}
 
-\newcommand{\EPlusPrim}[2]{\ensuremath{#1 \SyPlus #2}}
-\newcommand{\ETimesPrim}[2]{\ensuremath{#1 \SyTimes #2}}
-\newcommand{\EPlusIndet}[2]{\ensuremath{#1 \SyPlus_{?} #2}}
-\newcommand{\ETimesIndet}[2]{\ensuremath{#1 \SyTimes_{?} #2}}
+\newcommand{\EPlusNC}[2]{\ensuremath{#1 \SyPlus #2}}
+\newcommand{\EPlusNI}[2]{\ensuremath{#1 \SyPlus_{?} #2}}
+\newcommand{\ETimesNC}[2]{\ensuremath{#1 \SyTimes #2}}
+\newcommand{\ETimesNI}[2]{\ensuremath{#1 \SyTimes_{?} #2}}
 
 \newcommand{\ETrue}{\ensuremath{\SyTrue}}
 \newcommand{\EEHole}[2]{\ensuremath{\SyEHole{#1}{#2}}}
 
-\newcommand{\ENamed}[2]{\ensuremath{t_{#1}^{{\color{gray}#2}}}}
+\newcommand{\EVarNamed}[2]{\ensuremath{t_{#1}^{{\color{gray}#2}}}}

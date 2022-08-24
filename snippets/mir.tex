@@ -1,20 +1,4 @@
-\input{prelude}
-
-\newcommand{\THole}{\ensuremath{\SyEHole{}{}}}
-\newcommand{\TInt}{\ensuremath{\SyTInt}}
-
-\newcommand{\ELet}[2]{\ensuremath{\SyLet #1 = #2}}
-\newcommand{\ELetAnn}[3]{\ensuremath{\SyLet #1 \SyColon #2 = #3}}
-\newcommand{\EInn}{\ensuremath{\SyInn}}
-\newcommand{\EIn}[1]{\ensuremath{\SyIn #1}}
-\newcommand{\EPlus}[2]{\ensuremath{#1 \SyPlus #2}}
-\newcommand{\ETimes}[2]{\ensuremath{#1 \SyTimes #2}}
-\newcommand{\ECast}[2]{\ensuremath{#1 \SyCastL #2 \SyCastR}}
-
-\newcommand{\ETrue}{\ensuremath{\SyTrue}}
-\newcommand{\EEHole}[1]{\ensuremath{\SyEHole{#1}{\sigma_{#1}}}}
-
-\newcommand{\ENamed}[2]{\ensuremath{t_{#1}^{{\color{gray}#2}}}}
+\input{mir-prelude}
 
 \begin{document}
   % let t1 = true in
@@ -25,12 +9,12 @@
   % let t6 = t2_x<Int> in
   % t6 + t5
   \[\begin{array}{l}
-    \ELet{t_1}{\ETrue} \EInn \\
-    \ELet{\ENamed{2}{x}}{\ECast{t_1}{\THole}} \EInn \\
-    \ELet{t_3}{\ECast{\ENamed{2}{x}}{\TInt}} \EInn \\
-    \ELet{t_4}{\ETimes{t_3}{6}} \EInn \\
-    \ELet{t_5}{\EPlus{t_4}{\EEHole{1}}} \EInn \\
-    \ELet{t_6}{\ECast{\ENamed{2}{x}}{\TInt}} \EInn \\
+    \ELet{t_1}{\ETrue} \EIn \\
+    \ELet{\EVarNamed{2}{x}}{\ECast{t_1}{\THole}} \EIn \\
+    \ELet{t_3}{\ECast{\EVarNamed{2}{x}}{\TInt}} \EIn \\
+    \ELet{t_4}{\ETimes{t_3}{6}} \EIn \\
+    \ELet{t_5}{\EPlus{t_4}{\EEHole{1}}} \EIn \\
+    \ELet{t_6}{\ECast{\EVarNamed{2}{x}}{\TInt}} \EIn \\
     {\EPlus{t_6}{t_5}}
   \end{array}\]
 \end{document}

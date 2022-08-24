@@ -17,21 +17,21 @@
   %       let t12 = t11 +? ?1 in
   %       t9 +? t12
   \[\begin{array}{l}
-    \ELet{t_1}{\ETrue} \EInn \\
-    \ELet{\ENamed{2}{x}}{\EEmbedPrim{t_1}} \EInn \\
-    \ELet{t_3}{\EProj{\ENamed{2}{x}}{\TCInt}} \EInn \\
+    \ELet{t_1}{\ETrue} \EIn \\
+    \ELet{\EVarNamed{2}{x}}{\EEmbedNC{t_1}} \EIn \\
+    \ELet{t_3}{\EProj{\EVarNamed{2}{x}}{\TCInt}} \EIn \\
 
-    \EBranchWith{t_3} \\
-      \Indent \EBranchBr{t_4}{} \\
-        \Indent \Indent \ELet{t_5}{\ETimesPrim{t_4}{6}} \EInn \\
-        \Indent \Indent \ELet{t_6}{\EWrapIndet{t_5}} \EInn \\
-        \Indent \Indent \ELet{t_7}{\EPlusIndet{t_6}{\EEHole{1}{\sigma_1}}} \EInn \\
-        \Indent \Indent \ELet{t_8}{\EWrapIndet{t_4}} \EInn \\
-        \Indent \Indent \EPlusIndet{t_8}{t_7} \\
-      \Indent \EBranchBr{t_{9}}{} \\
-        \Indent \Indent \ELet{t_{10}}{\EWrapIndet{6}} \EInn \\
-        \Indent \Indent \ELet{t_{11}}{\ETimesIndet{t_{9}}{t_{10}}} \EInn \\
-        \Indent \Indent \ELet{t_{12}}{\EPlusIndet{t_{11}}{\EEHole{1}{\sigma_1}}} \EInn \\
-        \Indent \Indent \EPlusIndet{t_{9}}{t_{12}}
+    \ECaseCompleteWith{t_3} \\
+      \Indent \ECaseCompleteBranch{t_4}{} \\
+        \Indent \Indent \ELet{t_5}{\ETimesNC{t_4}{6}} \EIn \\
+        \Indent \Indent \ELet{t_6}{\EWrapIntoNI{t_5}} \EIn \\
+        \Indent \Indent \ELet{t_7}{\EPlusNI{t_6}{\EEHole{1}{\sigma_1}}} \EIn \\
+        \Indent \Indent \ELet{t_8}{\EWrapIntoNI{t_4}} \EIn \\
+        \Indent \Indent \EPlusNI{t_8}{t_7} \\
+      \Indent \ECaseCompleteBranch{t_{9}}{} \\
+        \Indent \Indent \ELet{t_{10}}{\EWrapIntoNI{6}} \EIn \\
+        \Indent \Indent \ELet{t_{11}}{\ETimesNI{t_{9}}{t_{10}}} \EIn \\
+        \Indent \Indent \ELet{t_{12}}{\EPlusNI{t_{11}}{\EEHole{1}{\sigma_1}}} \EIn \\
+        \Indent \Indent \EPlusNI{t_{9}}{t_{12}}
   \end{array}\]
 \end{document}

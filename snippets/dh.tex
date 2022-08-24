@@ -4,7 +4,7 @@
   % let x = true<?> in 
   % x<Int> + ((x<Int> * 6) + ?1)
   \[\begin{array}{l}
-    \ELet{x}{\ECast{\ETrue}{\THole}} \EInn \\
+    \ELet{x}{\ECast{\ETrue}{\THole}} \EIn \\
     \EPlus{\ECast{x}{\TInt}}{(\EPlus{(\ETimes{\ECast{x}{\TInt}}{6})}{\EEHole{1}})}
   \end{array}\]
 \end{document}
