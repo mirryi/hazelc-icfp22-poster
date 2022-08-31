@@ -1,5 +1,6 @@
 \input{prelude}
 
+\newcommand{\SyReturn}{\ensuremath{\textbf{return}~}}
 \newcommand{\SyCaseComplete}{\ensuremath{\textbf{casecomplete}~}}
 \newcommand{\SyEmbed}{\ensuremath{\textbf{emb}}}
 \newcommand{\SyProj}{\ensuremath{\textbf{proj}}}
@@ -18,9 +19,9 @@
 \newcommand{\SortValueVar}{\ensuremath{v}}
 \newcommand{\SortHoleId}{\ensuremath{u}}
 
-\newcommand{\CNC}{\ensuremath{\textsf{nc}}}
-\newcommand{\CNI}{\ensuremath{\textsf{ni}}}
-\newcommand{\CII}{\ensuremath{\textsf{ii}}}
+\newcommand{\CNC}{\ensuremath{\pie{0.3ex}{360}}}
+\newcommand{\CNI}{\ensuremath{\pie{0.3ex}{0}}}
+\newcommand{\CII}{\ensuremath{\pie{0.3ex}{180}}}
 
 \newcommand{\TCHole}{\ensuremath{\SyEHole{}{}}}
 \newcommand{\TCInt}{\ensuremath{\SyTInt}}
@@ -36,6 +37,7 @@
 \newcommand{\ELet}[2]{\ensuremath{\SyLet #1 = #2}}
 \newcommand{\EIn}{\ensuremath{\SyInn}}
 \newcommand{\EInn}[1]{\ensuremath{\SyIn #1}}
+\newcommand{\EReturn}[1]{\ensuremath{\SyReturn #1}}
 \newcommand{\ECaseCompleteWith}[1]{\ensuremath{\SyCaseComplete #1 \SyWith}}
 \newcommand{\ECaseCompleteBranch}[2]{\ensuremath{\SyBar #1 \SyArrow #2}}
 
@@ -45,10 +47,10 @@
 \newcommand{\EEmbedNI}[1]{\ensuremath{\SyEmbed_{\CNI}~ #1}}
 \newcommand{\EProj}[2]{\ensuremath{\SyProj[#2]~ #1}}
 
-\newcommand{\EPlusNC}[2]{\ensuremath{#1 \SyPlus #2}}
-\newcommand{\EPlusNI}[2]{\ensuremath{#1 \SyPlus_{?} #2}}
-\newcommand{\ETimesNC}[2]{\ensuremath{#1 \SyTimes #2}}
-\newcommand{\ETimesNI}[2]{\ensuremath{#1 \SyTimes_{?} #2}}
+\newcommand{\EPlusNC}[2]{\ensuremath{#1 \SyPlus_{\CNC} #2}}
+\newcommand{\EPlusNI}[2]{\ensuremath{#1 \SyPlus_{\CNI} #2}}
+\newcommand{\ETimesNC}[2]{\ensuremath{#1 \SyTimes_{\CNC} #2}}
+\newcommand{\ETimesNI}[2]{\ensuremath{#1 \SyTimes_{\CNI} #2}}
 
 \newcommand{\ETrue}{\ensuremath{\SyTrue}}
 \newcommand{\EEHole}[2]{\ensuremath{\SyEHole{#1}{#2}}}

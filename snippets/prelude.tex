@@ -10,6 +10,8 @@
 \usepackage{stmaryrd}
 \usepackage{bm}
 
+\usepackage{tikz}
+
 \usepackage{iftex}
 \ifPDFTeX
   \usepackage{libertinust1math}
@@ -60,3 +62,9 @@
 \newcommand{\rulen}[1]{~~\text{(#1)}}
 \newcommand{\judgment}[3]{\inferrule{#1}{#2}\rulen{\textsc{#3}}}
 \newcommand{\judgbox}[1]{\noindent \fbox{$#1$}}
+
+\newcommand{\pie}[2]{%
+  \begin{tikzpicture}
+    \draw (0,0) circle (#1); \fill[rotate=90] (#1,0) arc (0:#2:#1) -- (0,0) -- cycle;
+  \end{tikzpicture}%
+}
